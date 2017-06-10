@@ -1,0 +1,19 @@
+/* Jason Project */
+
+
+
+MAS robocupA {
+
+    infrastructure: Centralised
+
+    environment: KrisletBroker
+
+    agents:
+
+        defender;
+
+        //attacker;
+
+}
+
+
