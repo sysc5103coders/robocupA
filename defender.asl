@@ -19,8 +19,7 @@ myself(me).
 
 
 
-+!start : true <- .print("starting defender."); 
-	look.
++!start : true <- look.
 
 +see(b) : near(b) <- .print("see b 1"); kick(b); -near(b); look.
 

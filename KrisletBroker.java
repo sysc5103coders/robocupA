@@ -48,7 +48,7 @@ public class KrisletBroker extends Environment {
 	public Function getRunAction(String agName, Structure action) {
 		return (krislet_) -> {
 			Krislet krislet = (Krislet) krislet_;
-			krisMap.put(agName, krislet);
+			//krisMap.put(agName, krislet);
 			logger.info("runAction: "+action+", for agent=" + agName + ", krislet=" + krislet);
 			if (action.getFunctor().equals("look")) { 
 				logger.info("found look");
@@ -70,11 +70,12 @@ public class KrisletBroker extends Environment {
 
 	
 	private ObjectInfo getObject(String agName, String type) {
-		String id = "ball".equals(type)? 
-			"ball": "goal " + krisMap.get(agName).getBrain().getSide();
 		if (krisMap.get(agName)!=null && krisMap.get(agName).getBrain()!=null &&
-			krisMap.get(agName).getBrain().getMemory()!=null)
+		    krisMap.get(agName).getBrain().getMemory()!=null) {
+			String id = "ball".equals(type)? 
+				"ball": "goal " + krisMap.get(agName).getBrain().getSide(); 
 			return krisMap.get(agName).getBrain().getMemory().getObject(id);
+		}
 		logger.info("Could not get Memory instance.");
 		return null;
 	}

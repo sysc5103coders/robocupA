@@ -12,7 +12,7 @@ MAS robocupA {
 
         defender;
 
-        //attacker;
+        attacker;
 
 }
 
