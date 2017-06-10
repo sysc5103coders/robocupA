@@ -76,7 +76,7 @@ class Brain extends Thread implements SensorInput
 	//(new AndOrAgent(m_side, m_memory, m_krislet)).run();
 	m_initFn.apply(m_krislet);
 
-	m_krislet.bye();
+	//m_krislet.bye();
     }
 
 
