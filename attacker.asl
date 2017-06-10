@@ -2,9 +2,6 @@
 
 
 
-/* Initial beliefs and rules */
-
-
 myself(me).
 
 /* Initial goals */
@@ -21,14 +18,16 @@ myself(me).
 
 +!start : true <- .print("starting attacker."); 
 	look.
-	
-+see <- .print("attacker.see nothing").
 
-+see(b) : near(b) <- kick(b); -near(b).
++see(b) : near(b) <- .print("see b 1"); kick(b); -near(b); look.
 
-+see(b) : not(near(b)) <- turn(b); dash(b).
++see(b) : not(near(b)) <- .print("see b 2"); turn(b); dash(b); -see(b); look.
 
-+see(g) : near(g) <- turn(g); dash(g).
++see(g) : near(g) <- .print("see g 1"); turn(g); dash(g); look.
 
-+see(g) : not(near(g)) <- turn(g); dash(g).
++see(g) : not(near(g)) <- .print("see g 2"); turn(g); dash(g); look.
+
++see <- .print("attacker.see nothing"); -see; look.
+
++see(_) <- .print("attacker.see nothing (_)"); -see; look.
 
