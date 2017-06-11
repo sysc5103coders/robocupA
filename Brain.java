@@ -33,7 +33,7 @@ class Brain extends Thread implements SensorInput
 	m_timeOver = false;
 	m_krislet = krislet;
 	m_memory = new Memory();
-	//m_team = team;
+	m_team = team;
 	m_side = side;
 	// m_number = number;
 	m_playMode = playMode;
@@ -118,10 +118,11 @@ class Brain extends Thread implements SensorInput
 
     //===========================================================================
     // Private members
-    private SendCommand	                m_krislet;			// robot which is controled by this brain
-    private Memory			m_memory;				// place where all information is stored
-    private char			m_side;
+    public SendCommand	                m_krislet;			// robot which is controled by this brain
+    public Memory			m_memory;				// place where all information is stored
+    public char			m_side;
     volatile private boolean		m_timeOver;
-    private String                      m_playMode;
+    public String                      m_playMode;
+    public String m_team;
     
 }

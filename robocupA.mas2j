@@ -8,11 +8,7 @@ MAS robocupA {
 
     environment: KrisletBroker
 
-    agents:
-
-        defender;
-
-        attacker;
+    agents: defender;
 
 }
 
