@@ -22,8 +22,8 @@ public class Brain_Ultimate {
     {   
         String test = "";
         ObjectInfo object;
-	if(Pattern.matches("^before_kick_off.*",actions.m_playmode))
-	    actions.move( -Math.random()*52.5 , 34 - Math.random()*68.0 );
+		if(Pattern.matches("^before_kick_off.*",actions.m_playmode))
+			actions.move( -Math.random()*52.5 , 34 - Math.random()*68.0 );
         
         while(!sensors.m_timeOver)
         {
