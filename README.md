@@ -24,6 +24,13 @@ To simple execute the project, use the run.sh or run.bat scripts:
 
     run.bat
 
+There is a properties file, robocupA.properties. In it, the agent host, port and team properties can be set, for example:
+
+    host=localhost
+    port=6000
+    team=MyTeam
+
+
 Enjoy!
 
 -------------------------
