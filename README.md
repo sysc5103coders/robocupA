@@ -6,7 +6,7 @@ http://www.sce.carleton.ca/cgi-babak/agentcourse.cgi?RoboCupProject
 Command Line Arguments
 ----------------------
 
-Example: 
+To edit the source code, use JEdit as shown below: 
 
     cd <jason_dir>/jedit
     java -jar jedit.jar
@@ -14,6 +14,15 @@ Example:
 Open the project file as shown here:
 
 http://jason.sourceforge.net/mini-tutorial/getting-started/
+
+
+To simple execute the project, use the run.sh or run.bat scripts:
+
+    ./run.sh 
+
+    or on windows: 
+
+    run.bat
 
 Enjoy!
 

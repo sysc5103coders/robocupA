@@ -6,10 +6,13 @@ import jason.asSyntax.*;
 
 import jason.environment.*;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.*;
 import java.util.*;
 import java.util.function.*;
 import java.util.logging.*;
+import java.util.Properties;
 
 
 
@@ -20,7 +23,10 @@ public class KrisletBroker extends Environment {
     private Logger logger = Logger.getLogger("robocupA.mas2j."+KrisletBroker.class.getName());
 	
 	private Map<String, Krislet> krisMap = new HashMap();
+	
+	private String host = "", team = "Team";
 
+	private int port = 6000;
 
 
     /** Called before the MAS execution with the args informed in .mas2j */
@@ -28,11 +34,16 @@ public class KrisletBroker extends Environment {
     @Override
 
     public void init(String[] args) {
-
         super.init(args);
-
-        /*addPercept(ASSyntax.parseLiteral("percept(demo)"));
-*/	
+		
+		Properties props = new Properties();
+		try {
+			FileInputStream in = new FileInputStream("robocupA.properties");
+			props.load(in);
+			host = props.getProperty("host");
+			port = Integer.valueOf(props.getProperty("port"));
+			team = props.getProperty("team");
+		} catch (Exception e) { }
     }
 
 
@@ -49,7 +60,6 @@ public class KrisletBroker extends Environment {
 		return (krislet_) -> {
 			Krislet krislet = (Krislet) krislet_;
 			//krisMap.put(agName, krislet);
-			logger.info("runAction: "+action+", for agent=" + agName + ", krislet=" + krislet);
 			if (action.getFunctor().equals("look")) { 
 				logger.info("found look");
 				checkEnv(agName);
@@ -101,7 +111,7 @@ public class KrisletBroker extends Environment {
 	private void newKrislet(String agName, Function fn) {
 		Krislet krislet;
 		try {
-		    krislet = new Krislet(InetAddress.getByName(""), 6000, "TeamA", "", fn);
+		    krislet = new Krislet(InetAddress.getByName(host), port, team, "", fn);
 			krisMap.put(agName, krislet);
 			krislet.initialize();
 		} catch (Exception e) {
