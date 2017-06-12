@@ -23,12 +23,12 @@ public class ActionPool implements SendCommand {
     public ActionPool() 
     {
         try{
-        socket_rc = Socket_RC.getInstance(); 
-	m_socket = socket_rc.m_socket;
-	m_host = InetAddress.getByName("");
-	m_port = 6000;
-	m_team = "Tigres";
-	m_playing = true;
+			socket_rc = Socket_RC.getInstance(); 
+			m_socket = socket_rc.m_socket;
+			m_host = InetAddress.getByName("");
+			m_port = 6000;
+			m_team = "Tigres";
+			m_playing = true;
         }catch(Exception e){}
     }
     public void finalize()
@@ -42,40 +42,40 @@ public class ActionPool implements SendCommand {
     public void start_pool() 
         throws IOException
     {
-	byte[] buffer = new byte[MSG_SIZE];
-	DatagramPacket packet = new DatagramPacket(buffer, MSG_SIZE);
-	// first we need to initialize connection with server
-	init();
-	m_socket.receive(packet);
-	parseInitCommand(new String(buffer));
-	m_port = packet.getPort();
+		byte[] buffer = new byte[MSG_SIZE];
+		DatagramPacket packet = new DatagramPacket(buffer, MSG_SIZE);
+		// first we need to initialize connection with server
+		init();
+		m_socket.receive(packet);
+		parseInitCommand(new String(buffer));
+		m_port = packet.getPort();
     }
     private void init()
     {
-	send("(init " + m_team + " (version 9))");
+		send("(init " + m_team + " (version 9))");
     }
     protected void parseInitCommand(String message)
 	throws IOException
     {
-	Matcher m = Pattern.compile("^\\(init\\s(\\w)\\s(\\d{1,2})\\s(\\w+?)\\).*$").matcher(message);
-	if(!m.matches())
-        {
-            throw new IOException(message);
-        }
-        m_side = m.group(1).charAt(0);
-        m_number = Integer.parseInt(m.group(2));
-        m_playmode = m.group(3);
+		Matcher m = Pattern.compile("^\\(init\\s(\\w)\\s(\\d{1,2})\\s(\\w+?)\\).*$").matcher(message);
+		if(!m.matches())
+			{
+				throw new IOException(message);
+			}
+			m_side = m.group(1).charAt(0);
+			m_number = Integer.parseInt(m.group(2));
+			m_playmode = m.group(3);
     }
     private void send(String message)
     {
-	byte[] buffer = Arrays.copyOf(message.getBytes(),MSG_SIZE);
-	try{
-	    DatagramPacket packet = new DatagramPacket(buffer, MSG_SIZE, m_host, m_port);
-	    m_socket.send(packet);
-	}
-	catch(IOException e){
-	    System.err.println("socket sending error " + e);
-	}
+		byte[] buffer = Arrays.copyOf(message.getBytes(),MSG_SIZE);
+		try{
+			DatagramPacket packet = new DatagramPacket(buffer, MSG_SIZE, m_host, m_port);
+			m_socket.send(packet);
+		}
+		catch(IOException e){
+			System.err.println("socket sending error " + e);
+		}
     }
 //===========================================================================
     

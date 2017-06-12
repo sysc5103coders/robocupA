@@ -13,7 +13,7 @@ public class Socket_RC {
     
     public void finalize()
     {
-	m_socket.close();
+		m_socket.close();
     }
     
     public static Socket_RC getInstance(){

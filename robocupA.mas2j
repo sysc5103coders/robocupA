@@ -9,10 +9,9 @@ MAS robocupA {
     environment: KrisletBroker
 
     agents:
-
-        defender;
-
-        attacker;
+		dummy;
+		dummy2;
+		
 
 }
 

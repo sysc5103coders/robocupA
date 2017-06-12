@@ -30,15 +30,15 @@ class Brain extends Thread implements SensorInput
 		 String playMode,
 		 Function initFn)
     {
-	m_timeOver = false;
-	m_krislet = krislet;
-	m_memory = new Memory();
-	//m_team = team;
-	m_side = side;
-	// m_number = number;
-	m_playMode = playMode;
-	m_initFn = initFn;
-	start();
+		m_timeOver = false;
+		m_krislet = krislet;
+		m_memory = new Memory();
+		//m_team = team;
+		m_side = side;
+		// m_number = number;
+		m_playMode = playMode;
+		m_initFn = initFn;
+		start();
     }
 
 
@@ -68,15 +68,14 @@ class Brain extends Thread implements SensorInput
 
     public void run()
     {
+		// first put it somewhere on my side
+		if(Pattern.matches("^before_kick_off.*",m_playMode))
+			m_krislet.move( -Math.random()*52.5 , 34 - Math.random()*68.0 );
 
-	// first put it somewhere on my side
-	if(Pattern.matches("^before_kick_off.*",m_playMode))
-	    m_krislet.move( -Math.random()*52.5 , 34 - Math.random()*68.0 );
+		//(new AndOrAgent(m_side, m_memory, m_krislet)).run();
+		m_initFn.apply(m_krislet);
 
-	//(new AndOrAgent(m_side, m_memory, m_krislet)).run();
-	m_initFn.apply(m_krislet);
-
-	//m_krislet.bye();
+		//m_krislet.bye();
     }
 
 
@@ -92,7 +91,7 @@ class Brain extends Thread implements SensorInput
     // This function sends see information
     public void see(VisualInfo info)
     {
-	m_memory.store(info);
+		m_memory.store(info);
     }
 
 
@@ -106,9 +105,8 @@ class Brain extends Thread implements SensorInput
     // This function receives hear information from referee
     public void hear(int time, String message)
     {						 
-	if(message.compareTo("time_over") == 0)
-	    m_timeOver = true;
-
+		if(message.compareTo("time_over") == 0)
+			m_timeOver = true;
     }
 
     public char getSide() { return m_side; }
@@ -120,7 +118,7 @@ class Brain extends Thread implements SensorInput
     // Private members
     private SendCommand	                m_krislet;			// robot which is controled by this brain
     private Memory			m_memory;				// place where all information is stored
-    private char			m_side;
+    public char			m_side;
     volatile private boolean		m_timeOver;
     private String                      m_playMode;
     

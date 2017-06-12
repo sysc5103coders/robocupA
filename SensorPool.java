@@ -28,7 +28,7 @@ public class SensorPool extends Thread implements SensorInput {
     }
     public void finalize()
     {
-	socket_rc.finalize();
+		socket_rc.finalize();
     }
 //===========================================================================        
     
@@ -47,53 +47,53 @@ public class SensorPool extends Thread implements SensorInput {
     private void parseSensorInformation(String message)
 	throws IOException
     {
-	Matcher m=message_pattern.matcher(message);
-	if(!m.matches())
-	    {
-		throw new IOException(message);
-	    }
-	if( m.group(1).compareTo("see") == 0 )
-	    {
-		VisualInfo	info = new VisualInfo(message);
-		info.parse();
-		this.see(info);
-	    }
-	else if( m.group(1).compareTo("hear") == 0 )
-	    parseHear(message);
+		Matcher m=message_pattern.matcher(message);
+		if(!m.matches())
+			{
+			throw new IOException(message);
+			}
+		if( m.group(1).compareTo("see") == 0 )
+			{
+			VisualInfo	info = new VisualInfo(message);
+			info.parse();
+			this.see(info);
+			}
+		else if( m.group(1).compareTo("hear") == 0 )
+			parseHear(message);
     }
     // This function parses hear information
     private void parseHear(String message)
 	throws IOException
     {
-	Matcher m=hear_pattern.matcher(message);
-	int	time;
-	String sender;
-	String uttered;
-	if(!m.matches())
-	    {
-		throw new IOException(message);
-	    }
-	time = Integer.parseInt(m.group(1));
-	sender = m.group(2);
-	uttered = m.group(3);
-	if( sender.compareTo("referee") == 0 )
-	    this.hear(time,uttered);
-	else if( sender.compareTo("self") != 0 )
-	    this.hear(time,Integer.parseInt(sender),uttered);
+		Matcher m=hear_pattern.matcher(message);
+		int	time;
+		String sender;
+		String uttered;
+		if(!m.matches())
+			{
+			throw new IOException(message);
+			}
+		time = Integer.parseInt(m.group(1));
+		sender = m.group(2);
+		uttered = m.group(3);
+		if( sender.compareTo("referee") == 0 )
+			this.hear(time,uttered);
+		else if( sender.compareTo("self") != 0 )
+			this.hear(time,Integer.parseInt(sender),uttered);
     }
     // This function waits for new message from server
     private String receive() 
     {
-	byte[] buffer = new byte[MSG_SIZE];
-	DatagramPacket packet = new DatagramPacket(buffer, MSG_SIZE);
-	try{
-	    m_socket.receive(packet);
-	}catch(SocketException e){ 
-	    System.out.println("shutting down...");
-	}catch(IOException e){
-	    System.err.println("socket receiving error " + e);
-	}
-	return new String(buffer);
+		byte[] buffer = new byte[MSG_SIZE];
+		DatagramPacket packet = new DatagramPacket(buffer, MSG_SIZE);
+		try{
+			m_socket.receive(packet);
+		}catch(SocketException e){ 
+			System.out.println("shutting down...");
+		}catch(IOException e){
+			System.err.println("socket receiving error " + e);
+		}
+		return new String(buffer);
     }
 //===========================================================================
     
