@@ -79,12 +79,27 @@ public class KrisletBroker extends Environment {
 					if(obj.m_direction != 0)
 						krislet.turn(obj.m_direction);
 					else
-						krislet.dash(10*obj.m_distance);
+						krislet.dash(12*obj.m_distance);
 				}
 				else
 					krislet.turn(40.0);
 				clearPercepts(agName);
-			} 
+			}
+			else if (action.getFunctor().equals("runslowlytowardsball"))
+			{
+				//logger.info("action: runslowlytowardsball");
+				ObjectInfo obj = getObject(agName, "ball");
+				if(null != obj)
+				{
+					if(obj.m_direction != 0)
+						krislet.turn(obj.m_direction);
+					else
+						krislet.dash(8*obj.m_distance);
+				}
+				else
+					krislet.turn(40.0);
+				clearPercepts(agName);
+			} 			
 			else if(action.getFunctor().equals("kicktowardsgoal"))
 			{
 				logger.info("action: kicktowardsgoal");
