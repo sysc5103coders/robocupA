@@ -27,6 +27,6 @@ myself(me).
 +see(b) : seeball(b) & closest(b) <- .print("Saw ball, closest..."); runtowardsball(b); look.
 +see(b) : seeball(b) & not closest(b) <- .print("Saw ball, not closest...");runslowlytowardsball(b); look.
 									
-+see(_) <- .print("dummy.see nothing (_)"); turn; -see; look.
++see(_) <- .print("dummy4.see nothing (_)"); turn; -see; look.
 
 

@@ -85,6 +85,7 @@ public class KrisletBroker extends Environment {
 					krislet.turn(40.0);
 				clearPercepts(agName);
 			}
+			/*
 			else if (action.getFunctor().equals("runslowlytowardsball"))
 			{
 				//logger.info("action: runslowlytowardsball");
@@ -94,12 +95,12 @@ public class KrisletBroker extends Environment {
 					if(obj.m_direction != 0)
 						krislet.turn(obj.m_direction);
 					else
-						krislet.dash(8*obj.m_distance);
+						krislet.dash(4*obj.m_distance);
 				}
 				else
 					krislet.turn(40.0);
 				clearPercepts(agName);
-			} 			
+			} */			
 			else if(action.getFunctor().equals("kicktowardsgoal"))
 			{
 				logger.info("action: kicktowardsgoal");
@@ -126,18 +127,6 @@ public class KrisletBroker extends Environment {
 				krislet.turn(40.0);
 				clearPercepts(agName);
 			}
-			/*
-			else if (action.getFunctor().equals("turn")) { 
-				ObjectInfo obj = getObject(agName, "ball");
-				obj = obj==null? getObject(agName, "goal"): obj;
-				krislet.turn(obj==null? 27.1: obj.m_direction);
-			} else if (action.getFunctor().equals("dash")) { 
-				krislet.dash(1000);
-			} else if (action.getFunctor().equals("kick")) { 
-				ObjectInfo ball = getObject(agName, "goal");
-				krislet.kick(1000, ball==null? 27.1: ball.m_direction);
-			}
-			*/
 			pause();
 			return true; // the action was executed with success 
 		};
